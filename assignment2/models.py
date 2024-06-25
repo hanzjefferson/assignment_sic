@@ -1,5 +1,6 @@
 import pandas
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder
 from sklearn.linear_model import LinearRegression, LogisticRegression
 
 class BaseModel:
@@ -46,6 +47,11 @@ class BaseModel:
         self._dataset = pandas.read_csv(filename)
     
 class AI4IModel(BaseModel):
+    def preprocessing(self):
+        super().preprocessing("Machine failure", ["UDI","Product ID","TWF","HDF","PWF","OSF","RNF"])
+        label_encoder = LabelEncoder()
+        self.x['Type'] = label_encoder.fit_transform(self.x['Type'])
+
     def fit(self):
         self.fit_model = LogisticRegression()
         self.fit_model.fit(*self.get_train())
