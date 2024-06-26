@@ -17,7 +17,7 @@ result = pandas.DataFrame(model.get_test()[0])
 result['Machine failure'] = target
 print(result.head())
 
-plt.scatter(range(int(test_size*len(model.x))), target)
+plt.scatter(range(len(target)), target)
 plt.title("Prediksi Kesalahan Mesin (Machine Failure)")
 plt.xlabel("Akurasi: "+str(accuracy_score(model.get_test()[1], target)*100)+"%")
 plt.show()
